@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Launch Siege</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    min-height: 100vh;
+    background: #0a0a0f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    overflow: hidden;
+  }
+
+  .bg-grid {
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,120,0,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,120,0,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+
+  .bg-glow {
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,100,0,0.08) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .container {
+    position: relative;
+    text-align: center;
+    z-index: 1;
+  }
+
+  .operator-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,100,0,0.1);
+    border: 1px solid rgba(255,100,0,0.3);
+    color: #ff6400;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    margin-bottom: 32px;
+  }
+
+  .operator-badge::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: #ff6400;
+    border-radius: 50%;
+    animation: pulse-dot 1.5s ease-in-out infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .title {
+    font-size: clamp(48px, 8vw, 96px);
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: -2px;
+    line-height: 0.9;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .title span {
+    color: #ff6400;
+  }
+
+  .subtitle {
+    font-size: 13px;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    margin-bottom: 56px;
+    font-weight: 500;
+  }
+
+  .launch-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    background: #ff6400;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 18px 48px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+    transition: background 0.15s, transform 0.1s;
+    outline: none;
+  }
+
+  .launch-btn:hover {
+    background: #ff7a1f;
+  }
+
+  .launch-btn:active {
+    transform: scale(0.97);
+    background: #e05500;
+  }
+
+  .launch-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: #fff;
+    flex-shrink: 0;
+  }
+
+  .steam-hint {
+    margin-top: 20px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.2);
+    letter-spacing: 1px;
+  }
+
+  .divider {
+    width: 1px;
+    height: 40px;
+    background: rgba(255,100,0,0.3);
+    margin: 40px auto;
+  }
+
+  .stats {
+    display: flex;
+    gap: 48px;
+    justify-content: center;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-num {
+    font-size: 24px;
+    font-weight: 800;
+    color: #ff6400;
+    letter-spacing: -1px;
+  }
+
+  .stat-label {
+    font-size: 10px;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  .corner {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    border-color: rgba(255,100,0,0.2);
+    border-style: solid;
+  }
+
+  .corner-tl { top: 24px; left: 24px; border-width: 2px 0 0 2px; }
+  .corner-tr { top: 24px; right: 24px; border-width: 2px 2px 0 0; }
+  .corner-bl { bottom: 24px; left: 24px; border-width: 0 0 2px 2px; }
+  .corner-br { bottom: 24px; right: 24px; border-width: 0 2px 2px 0; }
+</style>
+</head>
+<body>
+
+<div class="bg-grid"></div>
+<div class="bg-glow"></div>
+<div class="corner corner-tl"></div>
+<div class="corner corner-tr"></div>
+<div class="corner corner-bl"></div>
+<div class="corner corner-br"></div>
+
+<div class="container">
+  <div class="operator-badge">Rainbow Six</div>
+
+  <h1 class="title">SIEGE</h1>
+  <p class="subtitle">Breach &bull; Clear &bull; Dominate</p>
+
+  <a class="launch-btn" href="steam://rungameid/359550">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.37l3.02-6.23a3.5 3.5 0 0 1-.23-.13 3.5 3.5 0 1 1 4.83-4.83l6.06-2.47C21.45 4.2 17.15 0 12 0zm5.72 14.55a4.67 4.67 0 0 1-6.27 2.17 4.67 4.67 0 0 1-2.36-2.8l-3.7-1.52a8 8 0 1 0 14.9-2.87l-2.57 5.02z"/>
+    </svg>
+    Launch on Steam
+  </a>
+
+  <p class="steam-hint">Opens Steam automatically &bull; App ID 359550</p>
+
+  <div class="divider"></div>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num">60+</div>
+      <div class="stat-label">Operators</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">20+</div>
+      <div class="stat-label">Maps</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">50M+</div>
+      <div class="stat-label">Players</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

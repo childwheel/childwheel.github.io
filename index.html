@@ -85,10 +85,6 @@
     margin-bottom: 8px;
   }
 
-  .title span {
-    color: #ff6400;
-  }
-
   .subtitle {
     font-size: 13px;
     color: rgba(255,255,255,0.3);
@@ -98,33 +94,34 @@
     font-weight: 500;
   }
 
+  .btn-row {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
   .launch-btn {
     position: relative;
     display: inline-flex;
     align-items: center;
     gap: 14px;
-    background: #ff6400;
-    color: #fff;
     font-size: 15px;
     font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
-    padding: 18px 48px;
+    padding: 18px 40px;
     border: none;
     cursor: pointer;
     text-decoration: none;
     clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
     transition: background 0.15s, transform 0.1s;
     outline: none;
-  }
-
-  .launch-btn:hover {
-    background: #ff7a1f;
+    color: #fff;
   }
 
   .launch-btn:active {
     transform: scale(0.97);
-    background: #e05500;
   }
 
   .launch-btn svg {
@@ -134,11 +131,28 @@
     flex-shrink: 0;
   }
 
+  .btn-steam { background: #ff6400; }
+  .btn-steam:hover { background: #ff7a1f; }
+  .btn-steam:active { background: #e05500; }
+
+  .btn-ubisoft { background: #0070d1; }
+  .btn-ubisoft:hover { background: #1a80db; }
+  .btn-ubisoft:active { background: #005bb0; }
+
+  .hint-row {
+    margin-top: 16px;
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
   .steam-hint {
-    margin-top: 20px;
-    font-size: 12px;
+    font-size: 11px;
     color: rgba(255,255,255,0.2);
     letter-spacing: 1px;
+    width: 220px;
+    text-align: center;
   }
 
   .divider {
@@ -154,9 +168,7 @@
     justify-content: center;
   }
 
-  .stat {
-    text-align: center;
-  }
+  .stat { text-align: center; }
 
   .stat-num {
     font-size: 24px;
@@ -202,14 +214,28 @@
   <h1 class="title">SIEGE LAUNCHER</h1>
   <p class="subtitle">Breach &bull; Clear &bull; Dominate</p>
 
-  <a class="launch-btn" href="steam://rungameid/359550">
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.37l3.02-6.23a3.5 3.5 0 0 1-.23-.13 3.5 3.5 0 1 1 4.83-4.83l6.06-2.47C21.45 4.2 17.15 0 12 0zm5.72 14.55a4.67 4.67 0 0 1-6.27 2.17 4.67 4.67 0 0 1-2.36-2.8l-3.7-1.52a8 8 0 1 0 14.9-2.87l-2.57 5.02z"/>
-    </svg>
-    Launch on Steam
-  </a>
+  <div class="btn-row">
+    <a class="launch-btn btn-steam" href="steam://rungameid/359550">
+      <!-- Steam icon -->
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.37l3.02-6.23a3.5 3.5 0 0 1-.23-.13 3.5 3.5 0 1 1 4.83-4.83l6.06-2.47C21.45 4.2 17.15 0 12 0zm5.72 14.55a4.67 4.67 0 0 1-6.27 2.17 4.67 4.67 0 0 1-2.36-2.8l-3.7-1.52a8 8 0 1 0 14.9-2.87l-2.57 5.02z"/>
+      </svg>
+      Launch on Steam
+    </a>
 
-  <p class="steam-hint">Opens Steam automatically &bull; App ID 359550</p>
+    <a class="launch-btn btn-ubisoft" href="uplay://launch/635/0">
+      <!-- Ubisoft Connect icon -->
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 3a9 9 0 0 1 7.364 14.13l-1.502-1.502A6.962 6.962 0 0 0 19 12a7 7 0 1 0-7 7 6.962 6.962 0 0 0 3.628-1.138l1.502 1.502A9 9 0 1 1 12 3zm0 3a6 6 0 1 1 0 12A6 6 0 0 1 12 6zm0 2a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/>
+      </svg>
+      Ubisoft Connect
+    </a>
+  </div>
+
+  <div class="hint-row">
+    <p class="steam-hint">Steam &bull; App ID 359550</p>
+    <p class="steam-hint">Ubisoft Connect &bull; Game ID 635</p>
+  </div>
 
   <div class="divider"></div>
 
